@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading... | Dat Truong</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<header>
+  <div><a href="index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
+    
+<nav>
+      <a href="index.html">Home</a>
+      <a href="projects/index.html">Projects</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section id="content" class="template-content">
+    <h1 id="title">Loading...</h1>
+    <img id="image" style="display:none; max-width: 100%; margin: 1rem 0;" />
+    <p id="description"></p>
+    <a id="repo-link" href="#" target="_blank" style="display:none;">🔗 View Repository</a>
+    <div id="content-body"></div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2025 Dat Truong</p>
+    <div class="footer-icons">
+      <a href="mailto:you@example.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/datpersonal" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/dattruongbusiness" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    if (!id) {
+      document.getElementById('title').textContent = 'Missing content ID';
+      throw new Error('No ID provided');
+    }
+
+    let source;
+    if (id.startsWith('blog')) {
+      source = 'data/blogs.json';
+    } else if (id.startsWith('project')) {
+      source = 'data/projects.json';
+    } else {
+      document.getElementById('title').textContent = 'Invalid content ID';
+      throw new Error('Unknown ID format');
+    }
+
+    fetch(source)
+      .then(res => res.json())
+      .then(data => {
+        const item = data[id];
+        if (!item) {
+          document.getElementById('title').textContent = 'Not Found';
+          return;
+        }
+
+        document.title = `${item.title} | Dat Truong`;
+        document.getElementById('title').textContent = item.title;
+        document.getElementById('description').textContent = item.description;
+
+        if (item.image) {
+          const img = document.getElementById('image');
+          img.src = item.image;
+          img.alt = item.title;
+          img.style.display = 'block';
+        }
+
+        if (item.repo) {
+          const repo = document.getElementById('repo-link');
+          repo.href = item.repo;
+          repo.style.display = 'inline-block';
+        }
+
+        if (item.content) {
+          document.getElementById('content-body').innerHTML = item.content;
+        }
+      })
+      .catch(err => {
+        document.getElementById('title').textContent = 'Error loading content';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
+

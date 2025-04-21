@@ -1,0 +1,14 @@
+
+{
+  "project1": {
+    "title": "SDSU Badminton Club Website",
+    "description": "A minimalist website site using GitHub Pages.",
+    "repo": "https://datpersonal.github.io/sdsubadminton"
+  },
+  "project2": {
+    "title": "Bau Cua 2D Game",
+    "description": "A traditional game that is played during Lunar New Year that is written in Unity",
+    "repo": "https://datpersonal.github.io/bau_cua"
+  }
+}
+

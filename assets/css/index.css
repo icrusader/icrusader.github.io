@@ -1,0 +1,40 @@
+.home-intro {
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.home-intro img {
+  width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.home-intro h2 {
+  margin-top: 0.75rem;
+}
+
+.home-intro .social-icons {
+  margin-top: 1rem;
+}
+
+.home-intro .skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.section-preview {
+  padding: 2rem 1.5rem;
+}
+
+.section-preview a.view-all {
+  margin-top: 1rem;
+  display: block;
+}
+

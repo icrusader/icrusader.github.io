@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Dat Truong</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="../assets/css/header-footer.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="../assets/css/project.css" />
+</head>
+<body>
+  <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
+<header>
+  <div><a href="../index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="index.html">Projects</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
+      <h1 style="text-align:center;">🛠️ Projects</h1>
+      <p style="text-align:center;">These are some of the projects I've worked on.</p>
+      <div class="post-grid" id="project-grid"></div>
+    </main>
+
+    <footer class="site-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-color); border-top: 1px solid rgba(255, 255, 255, 0.1); z-index: 100;">
+      <p>© 2025 Dat Truong</p>
+      <div class="footer-icons">
+        <a href="mailto:you@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/datpersonal" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/dattruongbusiness" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    fetch('../data/projects.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('project-grid');
+        for (const id in data) {
+          const project = data[id];
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = `
+            <h3>${project.title}</h3>
+            ${project.image ? `<img src="../${project.image}" alt="${project.title}" />` : ""}
+            <p>${project.description}</p>
+            <a href="../template.html?id=${id}">View Project →</a>
+          `;
+          container.appendChild(card);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load project data:', error);
+        document.getElementById('project-grid').innerHTML = "<p>Unable to load projects at this time.</p>";
+      });
+  </script>
+</body>
+</html>
+

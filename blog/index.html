@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Dat Truong</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="../assets/css/header-footer.css" />
+  <link rel="stylesheet" href="../assets/css/blog.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="page-container">
+<header>
+  <div><a href="../index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
+
+          <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="index.html">Blog</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
+      <h1 style="text-align:center;">📝 Blog Posts</h1>
+      <div class="post-grid" id="blog-grid"></div>
+    </main>
+ <footer class="site-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-color); border-top: 1px solid rgba(255, 255, 255, 0.1); z-index: 100;">
+      <p>© 2025 Dat Truong</p>
+      <div class="footer-icons">
+        <a href="mailto:you@example.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/datpersonal" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/dattruongbusiness" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    fetch('../data/blogs.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('blog-grid');
+        for (const id in data) {
+          const blog = data[id];
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = 
+            <h3>${blog.title}</h3>
+            ${blog.image ? <img src="../${blog.image}" alt="${blog.title}" /> : ""}
+            <p>${blog.description}</p>
+            <a href="../template.html?id=${id}">Read More →</a>
+          ;
+          container.appendChild(card);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load blog posts:', error);
+        document.getElementById('blog-grid').innerHTML = "<p>Dat Truong have not post anything yet.</p>";
+      });
+  </script>
+</body>
+</html>

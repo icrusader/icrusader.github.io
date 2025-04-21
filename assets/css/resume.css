@@ -1,0 +1,22 @@
+.resume {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: var(--card-color);
+  border-radius: 8px;
+  line-height: 1.75;
+}
+
+.resume h1, .resume h2, .resume h3 {
+  margin-top: 1.5rem;
+}
+
+.resume table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.resume td {
+  padding: 0.25rem 0.5rem;
+}
+

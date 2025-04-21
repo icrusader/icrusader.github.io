@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dat Truong | Portfolio</title>
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" type="image/jpg" href="assets/images/avatar.jpg" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/header-footer.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+</head>
+
+<body data-page="home">
+  <div class="page-container">
+	    <header>
+  <div><a href="index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
+
+	<nav>
+        <a href="index.html">Home</a>
+        <a href="projects/index.html">Projects</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Cybersecurity Intro -->
+<div class="home-intro post-card" style="display: flex; align-items: left; justify-content: space-between; max-width: 900px; margin: 2rem auto; gap: 2rem; padding: 2rem;">
+  <div style="text-align: center;">
+    <img src="assets/images/avatar.jpg" alt="Dat Truong" style="width: 150px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    <h2 style="margin-top: 0.75rem;">Dat Truong</h2>
+    <div style="margin-top: 1rem;">
+      <a href="mailto:you@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/datpersonal" target="_blank" title="GitHub" style="margin-left: 0.75rem;"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/dattruongbusiness" target="_blank" title="LinkedIn" style="margin-left: 0.75rem;"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
+
+  <div style="text-align: left;">
+    <p>I'm passionate about cybersecurity and system administration, with a focus on building secure and efficient IT systems.</p>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+      <div>🔐 <strong>Experienced with Linux and cybersecurity basics</strong></div>
+      <div>☁️ <strong>Familiar with setting up and managing cloud infrastructure</strong></div>
+      <div>🎯 <strong>Active in CTF competitions – ranked individually and with a team</strong></div>
+      <div>🎓 <strong>Help students learn cybersecurity and system admin skills</div>
+    </div>
+  </div>
+</div>
+
+<!-- Projects Preview -->
+<div class="section-preview post-card" style="max-width: 900px; margin: 2rem auto;">
+  <h2>🛠️ Projects</h2>
+  <p>These are some of the projects I've worked on recently.</p>
+  <div class="post-grid" id="project-preview"></div>
+  <a href="projects/index.html" class="view-all">→ View All Projects</a>
+</div>
+
+<!-- Blog Preview -->
+<div class="section-preview post-card" style="max-width: 900px; margin: 2rem auto;">
+  <h2>📝 Blog</h2>
+  <div class="post-grid" id="blog-preview"></div>
+  <a href="blog/index.html" class="view-all">→ View All Posts</a>
+</div>
+    <!-- Footer -->
+
+  <!-- Sticky Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Dat Truong</p>
+    <div class="footer-icons">
+      <a href="/contact.html" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/datpersonal" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/dattruongbusiness" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+</div>
+
+  <!-- JavaScript to load previews -->
+  <script>
+    // Load latest 2 projects
+    fetch('data/projects.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('project-preview');
+        let count = 0;
+        for (const id in data) {
+          if (count++ >= 2) break;
+          const item = data[id];
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = `
+            <h3>${item.title}</h3>
+            ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
+            <p>${item.description}</p>
+            <a href="template.html?id=${id}">View Project →</a>
+          `;
+          container.appendChild(card);
+        }
+      });
+
+    // Load latest 2 blog posts
+    fetch('data/blogs.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('blog-preview');
+        let count = 0;
+        for (const id in data) {
+          if (count++ >= 2) break;
+          const item = data[id];
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = `
+            <h3>${item.title}</h3>
+            ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
+            <p>${item.description}</p>
+            <a href="template.html?id=${id}">Read More →</a>
+          `;
+          container.appendChild(card);
+        }
+      });
+  </script>
+</body>
+</html>
+
