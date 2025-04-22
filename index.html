@@ -20,17 +20,21 @@
 
 <body data-page="home">
   <div class="page-container">
-	    <header>
-  <div><a href="index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
-
-	<nav>
-        <a href="index.html">Home</a>
-        <a href="projects/index.html">Projects</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+<header>
+  <div class="site-brand">
+    <a href="index.html" class="logo"><strong>Dat Truong</strong></a>
+    <button class="nav-toggle" aria-label="Toggle Navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="projects/index.html">Projects</a>
+    <a href="blog/index.html">Blog</a>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
     <!-- Cybersecurity Intro -->
 <div class="home-intro post-card" style="display: flex; align-items: left; justify-content: space-between; max-width: 900px; margin: 2rem auto; gap: 2rem; padding: 2rem;">
@@ -126,6 +130,12 @@
         }
       });
   </script>
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.site-nav').classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>
 

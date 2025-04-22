@@ -1,41 +1,52 @@
-/* Header */
+/* Basic ayout for header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 2rem;
-  background-color: var(--nav-bg);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-  position: sticky;
-  top: 0;
-  z-index: 100;
   flex-wrap: wrap;
+  padding: 1rem 2rem;
+  background-color: var(--nav-bg);
 }
 
-header div {
-  font-size: 1.25rem;
-  font-weight: 600;
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
   color: var(--text-color);
+  border: none;
+  cursor: pointer;
 }
 
-nav {
+/* Desktop nav */
+.site-nav {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
-nav a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: inline-block;
+  }
 
-nav a:hover {
-  color: var(--link-color);
-}
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
 
+  .site-nav.active {
+    display: flex;
+  }
+}
+l
 /* Footer */
 .site-footer {
   text-align: center;

@@ -20,24 +20,29 @@
 <body>
   <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
 <header>
-  <div><a href="index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="projects/index.html">Projects</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+  <div class="site-brand">
+    <a href="index.html" class="logo"><strong>Dat Truong</strong></a>
+    <button class="nav-toggle" aria-label="Toggle Navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="projects/index.html">Projects</a>
+    <a href="blog/index.html">Blog</a>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
     <main class="contact-section">
       <h1>Contact Me</h1>
 
       <form id="contact-form" action="https://formspree.io/f/myzwgznl" method="POST">
-        <label for="email">Your Email:</label>
-        <input type="email" name="email" id="email" required />
-	</br>
-        <label for="message">Your Message:</label>
+<label for="email">Your Email:</label>
+<input type="email" name="email" id="email" required />
+
+<label for="message">Your Message:</label>
         <textarea name="message" id="message" rows="5" required></textarea>
 
         <button type="submit">Send</button>
@@ -86,6 +91,12 @@
 
     lucide.createIcons();
   </script>
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.site-nav').classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>
 

@@ -1,0 +1,8 @@
+{
+  "blog1": {
+    "title": "Building My Portfolio Website",
+    "description": "How I built and deployed this responsive site using GitHub Pages and dynamic templates.",
+    "image": "assets/images/blog1.png",
+    "content": "<p>This post covers how I used HTML, CSS, and JavaScript to build a dynamic portfolio, with blog and project templates that pull content from JSON files. It also includes how I hosted everything using GitHub Pages.</p>"
+  }
+}

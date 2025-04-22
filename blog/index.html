@@ -18,16 +18,20 @@
 <body>
   <div class="page-container">
 <header>
-  <div><a href="../index.html" style="color: var(--text-color); text-decoration: none;"><strong>Dat Truong</strong></a></div>
-
-          <nav>
-        <a href="../index.html">Home</a>
-        <a href="../projects/index.html">Projects</a>
-        <a href="index.html">Blog</a>
-        <a href="../resume.html">Resume</a>
-        <a href="../contact.html">Contact</a>
-      </nav>
-    </header>
+  <div class="sie-brand">
+    <a href="../index.html" class="logo"><strong>Dat Truong</strong></a>
+    <button class="nav-toggle" aria-label="Toggle Navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <nav class="site-nav">
+    <a href="../index.html">Home</a>
+    <a href="../projects/index.html">Projects</a>
+    <a href="blog/index.html">Blog</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
 
     <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
       <h1 style="text-align:center;">📝 Blog Posts</h1>
@@ -66,5 +70,11 @@
         document.getElementById('blog-grid').innerHTML = "<p>Dat Truong have not post anything yet.</p>";
       });
   </script>
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.site-nav').classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>
