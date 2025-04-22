@@ -1,7 +1,7 @@
 {
   "blog1": {
-    "title": "Designing My Portfolio",
-    "description": "Thoughts on building this site with GitHub Pages and custom styling.",
+    "title": "CS596 Defense Lab Write-Up",
+    "description": "My thought process while doing the Defense Lab for my CS596 class",
     "markdown": "data/blogs/blog1.md"
   }
 }
