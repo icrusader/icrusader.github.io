@@ -1,8 +1,9 @@
 {
   "blog1": {
-    "title": "Building My Portfolio Website",
-    "description": "How I built and deployed this responsive site using GitHub Pages and dynamic templates.",
-    "image": "assets/images/blog1.png",
-    "content": "<p>This post covers how I used HTML, CSS, and JavaScript to build a dynamic portfolio, with blog and project templates that pull content from JSON files. It also includes how I hosted everything using GitHub Pages.</p>"
+    "title": "CS 596: Defense Lab Write-up",
+    "description": "A detailed overview of my approach and results in the defense lab for SDSU’s CS 596 cybersecurity course.",
+    "image": "assets/images/defense-lab-cover.png",
+   "content": "<p>For the CS 596 Defense Lab, I was tasked with hardening a vulnerable Linux system against a range of potential attacks. The objective was to improve system security while maintaining service functionality.</p>"
   }
 }
+
