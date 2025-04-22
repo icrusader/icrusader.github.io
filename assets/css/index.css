@@ -9,6 +9,7 @@
 }
 
 .home-intro img {
+  font-size: 1.1rem;
   width: 150px;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);

@@ -6,6 +6,8 @@
   background: var(--card-color);
   border-radius: 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 form {
@@ -26,9 +28,22 @@ textarea {
   resize: vertical;
 }
 
-button {
-  width: fit-content;
-  align-self: flex-start;
+form button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--link-color);
+  color: #000;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+  background-color: #55bbeb;
+  transform: translateY(-2px);
 }
 
 .contact-links {

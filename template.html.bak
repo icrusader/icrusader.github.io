@@ -12,9 +12,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/header-footer.css" />
-
-  <!-- Markdown Renderer -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
 <body>
   <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
@@ -41,10 +39,9 @@
         <p id="description"></p>
         <a id="repo-link" href="#" target="_blank" style="display:none;">🔗 View Repository</a>
         <div id="content-body"></div>
-
-        <div id="blog-return" style="display: none; margin-top: 2rem;">
-          <a href="index.html" class="btn">← Back to Home</a>
-        </div>
+	<div id="blog-return" style="display: none; margin-top: 2rem;">
+  <a href="index.html" class="btn">← Back to Home</a>
+</div>
       </section>
     </main>
 
@@ -86,17 +83,10 @@
           return;
         }
 
-        // Update metadata
         document.title = `${item.title} | Dat Truong`;
-	if (!id.startsWith('blog')) {
-			  document.getElementById('title').textContent = item.title;
-			  document.getElementById('description').textContent = item.description;
-	} else {
-  		// Hide title/description for blogs
-			  document.getElementById('title').style.display = 'none';
-			  document.getElementById('description').style.display = 'none';
-	}
-        // Optional image
+        document.getElementById('title').textContent = item.title;
+        document.getElementById('description').textContent = item.description;
+
         if (item.image) {
           const img = document.getElementById('image');
           img.src = item.image;
@@ -104,33 +94,19 @@
           img.style.display = 'block';
         }
 
-        // Optional repo link
         if (item.repo) {
           const repo = document.getElementById('repo-link');
           repo.href = item.repo;
           repo.style.display = 'inline-block';
         }
 
-        // Markdown or inline content
-        if (item.markdown) {
-          fetch(item.markdown)
-            .then(res => res.text())
-            .then(md => {
-              const html = marked.parse(md);
-              document.getElementById('content-body').innerHTML = html;
-            })
-            .catch(err => {
-              document.getElementById('content-body').textContent = 'Failed to load blog content.';
-              console.error(err);
-            });
-        } else if (item.content) {
+        if (item.content) {
           document.getElementById('content-body').innerHTML = item.content;
         }
+	if (id.startsWith('blog')) {
+  document.getElementById('blog-return').style.display = 'block';
+}
 
-        // Show "Back to Home" for blogs
-        if (id.startsWith('blog')) {
-          document.getElementById('blog-return').style.display = 'block';
-        }
       })
       .catch(err => {
         document.getElementById('title').textContent = 'Error loading content';

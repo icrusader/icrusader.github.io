@@ -27,6 +27,11 @@ header {
   display: flex;
   gap: 1.5rem;
 }
+.site-nav a {
+  font-size: 1.1rem;        /* Bigger text for desktop */
+  font-weight: 500;         /* Makes it a bit bolder */
+  padding: 0.5rem 0.75rem;  /* Comfortable spacing */
+}
 
 /* ===================== FOOTER ===================== */
 .site-footer {
@@ -36,7 +41,7 @@ header {
   color: var(--text-color);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: auto;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .footer-icons {
@@ -56,7 +61,11 @@ header {
 .footer-icons a:hover {
   color: var(--link-color);
 }
-
+.site-footer p {
+  font-size: 1rem;
+  text-align: center;
+  margin: 0.5rem 0;
+}
 /* ===================== MOBILE ===================== */
 @media (max-width: 768px) {
   .nav-toggle {

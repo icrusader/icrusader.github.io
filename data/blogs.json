@@ -1,9 +1,8 @@
 {
   "blog1": {
-    "title": "CS 596: Defense Lab Write-up",
-    "description": "A detailed overview of my approach and results in the defense lab for SDSU’s CS 596 cybersecurity course.",
-    "image": "assets/images/defense-lab-cover.png",
-   "content": "<p>For the CS 596 Defense Lab, I was tasked with hardening a vulnerable Linux system against a range of potential attacks. The objective was to improve system security while maintaining service functionality.</p>"
+    "title": "Designing My Portfolio",
+    "description": "Thoughts on building this site with GitHub Pages and custom styling.",
+    "markdown": "data/blogs/blog1.md"
   }
 }
 
