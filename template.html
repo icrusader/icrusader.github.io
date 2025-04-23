@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -12,32 +13,34 @@
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/header-footer.css" />
+  <link rel="stylesheet" href="assets/css/markdown-responsive.css" />
 
   <!-- Markdown Renderer -->
-
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
 </head>
 <body>
   <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
     <header>
-      <div class="site-brand">
-        <a href="index.html" class="logo"><strong>Dat Truong</strong></a>
-        <button class="nav-toggle" aria-label="Toggle Navigation">
-          <i class="fas fa-bars"></i>
-        </button>
+      <div class="header-inner">
+        <div class="site-brand">
+          <a href="index.html" class="logo"><strong>Dat Truong</strong></a>
+          <button class="nav-toggle" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="projects/index.html">Projects</a>
+          <a href="blog/index.html">Blog</a>
+          <a href="resume.html">Resume</a>
+          <a href="contact.html">Contact</a>
+        </nav>
       </div>
-      <nav class="site-nav">
-        <a href="index.html">Home</a>
-        <a href="projects/index.html">Projects</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
     </header>
 
     <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
-      <section id="content" class="template-content">
+      <section id="content" class="template-content markdown-body">
         <h1 id="title">Loading...</h1>
         <img id="image" style="display:none; max-width: 100%; margin: 1rem 0;" />
         <p id="description"></p>
@@ -49,19 +52,20 @@
         </div>
       </section>
     </main>
-<footer class="site-footer">
-  <div class="layout-wrapper">
-    <p>© 2025 Dat Truong</p>
-    <div class="footer-icons">
-      <a href="contact.html"><i class="fas fa-envelope"></i></a>
-      <a href="https://github.com/icrusader" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/dattruongbusiness" target="_blank"><i class="fab fa-linkedin"></i></a>
-    </div>
-  </div>
-</footer>
 
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© 2025 Dat Truong</p>
+        <div class="footer-icons">
+          <a href="contact.html"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/icrusader" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/dattruongbusiness" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
   </div>
 
+  <!-- Content Loader Script -->
   <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -90,17 +94,15 @@
           return;
         }
 
-        // Update metadata
         document.title = `${item.title} | Dat Truong`;
-	if (!id.startsWith('blog')) {
-			  document.getElementById('title').textContent = item.title;
-			  document.getElementById('description').textContent = item.description;
-	} else {
-  		// Hide title/description for blogs
-			  document.getElementById('title').style.display = 'none';
-			  document.getElementById('description').style.display = 'none';
-	}
-        // Optional image
+        if (!id.startsWith('blog')) {
+          document.getElementById('title').textContent = item.title;
+          document.getElementById('description').textContent = item.description;
+        } else {
+          document.getElementById('title').style.display = 'none';
+          document.getElementById('description').style.display = 'none';
+        }
+
         if (item.image) {
           const img = document.getElementById('image');
           img.src = item.image;
@@ -108,14 +110,12 @@
           img.style.display = 'block';
         }
 
-        // Optional repo link
         if (item.repo) {
           const repo = document.getElementById('repo-link');
           repo.href = item.repo;
           repo.style.display = 'inline-block';
         }
 
-        // Markdown or inline content
         if (item.markdown) {
           fetch(item.markdown)
             .then(res => res.text())
@@ -131,7 +131,6 @@
           document.getElementById('content-body').innerHTML = item.content;
         }
 
-        // Show "Back to Home" for blogs
         if (id.startsWith('blog')) {
           document.getElementById('blog-return').style.display = 'block';
         }
@@ -142,11 +141,15 @@
       });
   </script>
 
+  <!-- Navigation Toggle -->
   <script>
     document.querySelector('.nav-toggle').addEventListener('click', () => {
       document.querySelector('.site-nav').classList.toggle('active');
     });
   </script>
+
+  <!-- Markdown Enhancements -->
+  <script src="assets/js/markdown-responsive.js"></script>
 </body>
 </html>
 

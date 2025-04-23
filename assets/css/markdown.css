@@ -1,0 +1,15 @@
+
+/* Responsive Markdown Content */
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+

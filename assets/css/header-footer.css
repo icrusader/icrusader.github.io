@@ -144,7 +144,16 @@ header {
   .footer-icons a:hover {
     color: var(--link-color);
   }
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
 }
+}
+
+
 .layout-wrapper {
   max-width: 900px;
   margin: 0 auto;
