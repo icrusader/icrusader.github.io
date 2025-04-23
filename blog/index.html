@@ -16,29 +16,31 @@
   <link rel="stylesheet" href="../assets/css/responsive.css" />
 </head>
 <body>
-  <div class="page-container">
-<header>
-  <div class="site-brand">
-    <a href="../index.html" class="logo"><strong>Dat Truong</strong></a>
-    <button class="nav-toggle" aria-label="Toggle Navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
-  <nav class="site-nav">
-    <a href="../index.html">Home</a>
-    <a href="../projects/index.html">Projects</a>
-    <a href="index.html">Blog</a>
-    <a href="../resume.html">Resume</a>
-    <a href="../contact.html">Contact</a>
-  </nav>
-</header>
+  <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
+    <header>
+      <div class="site-brand">
+        <a href="../index.html" class="logo"><strong>Dat Truong</strong></a>
+        <button class="nav-toggle" aria-label="Toggle Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="index.html">Blog</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
 
     <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
       <h1 style="text-align:center;">📝 Blog Posts</h1>
+      <p style="text-align:center;">I write about cybersecurity, system administration, and CTFs.</p>
       <div class="post-grid" id="blog-grid"></div>
     </main>
- <footer class="site-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-color); border-top: 1px solid rgba(255, 255, 255, 0.1); z-index: 100;">
-	 <p><center>© 2025 Dat Truong</center></p>
+
+    <footer class="site-footer">
+      <p><center>© 2025 Dat Truong</center></p>
       <div class="footer-icons">
         <a href="../contact.html"><i class="fas fa-envelope"></i></a>
         <a href="https://github.com/icrusader" target="_blank"><i class="fab fa-github"></i></a>
@@ -47,44 +49,46 @@
     </footer>
   </div>
 
-<script>
-  fetch('../data/blogs.json')
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('blog-grid');
-      const keys = Object.keys(data);
-      
-      if (keys.length === 0) {
-        container.innerHTML = `
-          <div class="section-card" style="text-align: center;">
-            <p>I haven’t written any blog posts yet.</p>
-          </div>
-        `;
-        return;
-      }
+  <script>
+    fetch('../data/blogs.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('blog-grid');
+        const keys = Object.keys(data);
 
-      for (const id of keys) {
-        const blog = data[id];
-        const card = document.createElement('div');
-        card.className = 'section-card';
-        card.innerHTML = `
-          <h3>${blog.title}</h3>
-          ${blog.image ? `<img src="../${blog.image}" alt="${blog.title}" />` : ""}
-          <p>${blog.description}</p>
-          <a href="../template.html?id=${id}">Read More →</a>
-        `;
-        container.appendChild(card);
-      }
-    })
-    .catch(error => {
-      console.error('Failed to load blog posts:', error);
+        if (keys.length === 0) {
+          container.innerHTML = `
+            <div class="post-card" style="text-align: center;">
+              <p>I haven’t written any blog posts yet.</p>
+            </div>
+          `;
+          return;
+        }
+
+        for (const id of keys) {
+          const blog = data[id];
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = `
+            <h3>${blog.title}</h3>
+            ${blog.image ? `<img src="../${blog.image}" alt="${blog.title}" />` : ""}
+            <p>${blog.description}</p>
+            <a href="../template.html?id=${id}">Read More →</a>
+          `;
+          container.appendChild(card);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load blog posts:', error);
+        document.getElementById('blog-grid').innerHTML = "<p>Error loading blog posts.</p>";
+      });
+  </script>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.site-nav').classList.toggle('active');
     });
-</script>
-<script>
-  document.querySelector('.nav-toggle').addEventListener('click', () => {
-    document.querySelector('.site-nav').classList.toggle('active');
-  });
-</script>
-
+  </script>
 </body>
 </html>
+

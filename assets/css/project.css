@@ -21,4 +21,17 @@
   border-radius: 6px;
   margin: 1rem 0;
 }
+.project-detail {
+  background: var(--card-color);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  margin-bottom: 3rem;
+}
+
+.project-detail img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
 

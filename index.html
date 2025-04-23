@@ -89,26 +89,30 @@
   <!-- JavaScript to load previews -->
   <script>
     // Load latest 2 projects
-    fetch('data/projects.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('project-preview');
-        let count = 0;
-        for (const id in data) {
-          if (count++ >= 2) break;
-          const item = data[id];
-          const card = document.createElement('div');
-          card.className = 'post-card';
-          card.innerHTML = `
-            <h3>${item.title}</h3>
-            ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
-            <p>${item.description}</p>
-            <a href="template.html?id=${id}">View Project →</a>
-          `;
-          container.appendChild(card);
-        }
-      });
-
+	    // Load latest 2 projects (linked to repo)
+  fetch('data/projects.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('project-preview');
+      let count = 0;
+      for (const id in data) {
+        if (count++ >= 2) break;
+        const item = data[id];
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.innerHTML = `
+          <h3>${item.title}</h3>
+          ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
+          <p>${item.description}</p>
+          <a href="${item.repo}" target="_blank" rel="noopener noreferrer">View Project →</a>
+        `;
+        container.appendChild(card);
+      }
+    })
+    .catch(error => {
+      console.error('Failed to load project data:', error);
+      document.getElementById('project-preview').innerHTML = "<p>Unable to load projects at this time.</p>";
+    });
     // Load latest 2 blog posts
     fetch('data/blogs.json')
       .then(res => res.json())
@@ -138,4 +142,3 @@
 
 </body>
 </html>
-

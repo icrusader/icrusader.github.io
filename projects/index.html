@@ -39,7 +39,7 @@
       <div class="post-grid" id="project-grid"></div>
     </main>
 
-    <footer class="site-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card-color); border-top: 1px solid rgba(255, 255, 255, 0.1); z-index: 100;">
+    <footer class="site-footer">
 	    <p><center>© 2025 Dat Truong</center></p>
       <div class="footer-icons">
         <a href="../contact.html" title="Email"><i class="fas fa-envelope"></i></a>
@@ -48,30 +48,57 @@
       </div>
     </footer>
   </div>
+<script>
+// Load all projects
+fetch('../data/projects.json')
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('project-grid');
+    for (const id in data) {
+      const item = data[id];
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        ${item.image ? `<img src="../${item.image}" alt="${item.title}" />` : ""}
+        <p>${item.description}</p>
+        <a href="${item.repo}" target="_blank" rel="noopener noreferrer">View Project →</a>
+      `;
+      container.appendChild(card);
+    }
+  })
+  .catch(error => {
+    console.error('Failed to load project data:', error);
+    document.getElementById('project-grid').innerHTML = "<p>Unable to load projects at this time.</p>";
+  });
+</script>
+<script>
+// Load latest 2 blog posts
+fetch('data/blogs.json')
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('blog-preview');
+    let count = 0;
+    for (const id in data) {
+      if (count++ >= 2) break;
+      const item = data[id];
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
+        <p>${item.description}</p>
+        <a href="template.html?id=${id}">Read More →</a>
+      `;
+      container.appendChild(card);
+    }
+  })
+  .catch(error => {
+    console.error('Failed to load blog data:', error);
+    document.getElementById('blog-preview').innerHTML = "<p>Unable to load blog posts at this time.</p>";
+  });
+</script>
 
-  <script>
-    fetch('../data/projects.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('project-grid');
-        for (const id in data) {
-          const project = data[id];
-          const card = document.createElement('div');
-          card.className = 'post-card';
-          card.innerHTML = `
-            <h3>${project.title}</h3>
-            ${project.image ? `<img src="../${project.image}" alt="${project.title}" />` : ""}
-            <p>${project.description}</p>
-            <a href="../template.html?id=${id}">View Project →</a>
-          `;
-          container.appendChild(card);
-        }
-      })
-      .catch(error => {
-        console.error('Failed to load project data:', error);
-        document.getElementById('project-grid').innerHTML = "<p>Unable to load projects at this time.</p>";
-      });
-  </script>
 <script>
   document.querySelector('.nav-toggle').addEventListener('click', () => {
     document.querySelector('.site-nav').classList.toggle('active');

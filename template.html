@@ -12,143 +12,100 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/global.css" />
-  <link rel="stylesheet" href="assets/css/header-footer.css" />
   <link rel="stylesheet" href="assets/css/markdown-responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
+
+  <style>
+    .blog-wrapper {
+      background: var(--card-color, #1f1f1f);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      max-width: 900px;
+      margin: 2rem auto;
+      transition: background 0.3s;
+    }
+
+    @media (max-width: 600px) {
+      .blog-wrapper {
+        padding: 1rem;
+        margin: 1rem;
+      }
+    }
+  </style>
 
   <!-- Markdown Renderer -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
 </head>
 <body>
-  <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
-    <header>
-      <div class="header-inner">
-        <div class="site-brand">
-          <a href="index.html" class="logo"><strong>Dat Truong</strong></a>
-          <button class="nav-toggle" aria-label="Toggle Navigation">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-        <nav class="site-nav">
-          <a href="index.html">Home</a>
-          <a href="projects/index.html">Projects</a>
-          <a href="blog/index.html">Blog</a>
-          <a href="resume.html">Resume</a>
-          <a href="contact.html">Contact</a>
-        </nav>
+  <main>
+    <div class="blog-wrapper markdown-body">
+      <!-- Top return button -->
+      <div id="blog-return-top" style="margin-bottom: 2rem;">
+        <a href="index.html" class="btn">← Back to Home</a>
       </div>
-    </header>
 
-    <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
-      <section id="content" class="template-content markdown-body">
-        <h1 id="title">Loading...</h1>
-        <img id="image" style="display:none; max-width: 100%; margin: 1rem 0;" />
-        <p id="description"></p>
-        <a id="repo-link" href="#" target="_blank" style="display:none;">🔗 View Repository</a>
-        <div id="content-body"></div>
+      <h1 id="title">Loading...</h1>
+      <p id="description"></p>
+      <img id="image" style="display:none; max-width: 100%; margin: 1rem 0;" />
+      <div id="content-body"></div>
 
-        <div id="blog-return" style="display: none; margin-top: 2rem;">
-          <a href="index.html" class="btn">← Back to Home</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <p>© 2025 Dat Truong</p>
-        <div class="footer-icons">
-          <a href="contact.html"><i class="fas fa-envelope"></i></a>
-          <a href="https://github.com/icrusader" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com/in/dattruongbusiness" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
+      <!-- Bottom return button -->
+      <div style="margin-top: 2rem;">
+        <a href="index.html" class="btn">← Back to Home</a>
       </div>
-    </footer>
-  </div>
+    </div>
+  </main>
 
-  <!-- Content Loader Script -->
   <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
-    if (!id) {
-      document.getElementById('title').textContent = 'Missing content ID';
-      throw new Error('No ID provided');
+    if (!id || !id.startsWith('blog')) {
+      document.getElementById('title').textContent = 'Invalid or missing blog ID';
+      throw new Error('Invalid blog ID');
     }
 
-    let source;
-    if (id.startsWith('blog')) {
-      source = 'data/blogs.json';
-    } else if (id.startsWith('project')) {
-      source = 'data/projects.json';
-    } else {
-      document.getElementById('title').textContent = 'Invalid content ID';
-      throw new Error('Unknown ID format');
-    }
-
-    fetch(source)
+    fetch('data/blogs.json')
       .then(res => res.json())
       .then(data => {
-        const item = data[id];
-        if (!item) {
-          document.getElementById('title').textContent = 'Not Found';
+        const post = data[id];
+        if (!post) {
+          document.getElementById('title').textContent = 'Blog Not Found';
           return;
         }
 
-        document.title = `${item.title} | Dat Truong`;
-        if (!id.startsWith('blog')) {
-          document.getElementById('title').textContent = item.title;
-          document.getElementById('description').textContent = item.description;
-        } else {
-          document.getElementById('title').style.display = 'none';
-          document.getElementById('description').style.display = 'none';
-        }
+        document.title = `${post.title} | Dat Truong`;
+        document.getElementById('title').textContent = post.title;
+        document.getElementById('description').textContent = post.description;
 
-        if (item.image) {
+        if (post.image) {
           const img = document.getElementById('image');
-          img.src = item.image;
-          img.alt = item.title;
+          img.src = post.image;
+          img.alt = post.title;
           img.style.display = 'block';
         }
 
-        if (item.repo) {
-          const repo = document.getElementById('repo-link');
-          repo.href = item.repo;
-          repo.style.display = 'inline-block';
-        }
-
-        if (item.markdown) {
-          fetch(item.markdown)
+        if (post.markdown) {
+          fetch(post.markdown)
             .then(res => res.text())
             .then(md => {
-              const html = marked.parse(md);
-              document.getElementById('content-body').innerHTML = html;
+              document.getElementById('content-body').innerHTML = marked.parse(md);
             })
-            .catch(err => {
+            .catch(() => {
               document.getElementById('content-body').textContent = 'Failed to load blog content.';
-              console.error(err);
             });
-        } else if (item.content) {
-          document.getElementById('content-body').innerHTML = item.content;
-        }
-
-        if (id.startsWith('blog')) {
-          document.getElementById('blog-return').style.display = 'block';
+        } else if (post.content) {
+          document.getElementById('content-body').innerHTML = post.content;
+        } else {
+          document.getElementById('content-body').textContent = 'No content available.';
         }
       })
-      .catch(err => {
-        document.getElementById('title').textContent = 'Error loading content';
-        console.error(err);
+      .catch(() => {
+        document.getElementById('title').textContent = 'Error loading blog';
       });
   </script>
 
-  <!-- Navigation Toggle -->
-  <script>
-    document.querySelector('.nav-toggle').addEventListener('click', () => {
-      document.querySelector('.site-nav').classList.toggle('active');
-    });
-  </script>
-
-  <!-- Markdown Enhancements -->
   <script src="assets/js/markdown-responsive.js"></script>
 </body>
 </html>
