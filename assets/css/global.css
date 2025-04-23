@@ -119,4 +119,46 @@ h1, h2 {
   white-space: nowrap;
 }
 }
+.template-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.7;
+}
+
+.template-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.template-content pre {
+  overflow-x: auto;
+  background: #111;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.template-content h1, .template-content h2, .template-content h3 {
+  margin-top: 2rem;
+}
+.markdown-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+}
+.markdown-body h1 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+.markdown-body h2 {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+}
+.markdown-body h3 {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
 

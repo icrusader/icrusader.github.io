@@ -1,7 +1,7 @@
 {
   "blog1": {
-    "title": "CS596 Defense Lab Write-Up",
-    "description": "My thought process while doing the Defense Lab for my CS596 class",
+    "title": "🛡️ Defense Lab Write-up (Recon: Part 1)",
+    "description": "My thought process while doing the Defense Lab for my CS596 class. This is part 1 of recon.",
     "markdown": "data/blogs/blog1.md"
   }
 }
