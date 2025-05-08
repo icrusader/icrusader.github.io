@@ -3,6 +3,11 @@
     "title": "🛡️ Defense Lab Write-up (Recon: Part 1)",
     "description": "My thought process while doing the Defense Lab for my CS596 class. This is part 1 of recon.",
     "markdown": "data/blogs/blog1.md"
+  },
+  "blog2": {
+    "title": "🎓 My Last Dance at SDSU: CTF Edition",
+    "description": "Reflecting on my senior year cybersecurity competitions and CTF milestones—including NCL, HackTheBox, and BugCrowd events.",
+    "markdown": "data/blogs/blog2.md"
   }
 }
 
