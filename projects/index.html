@@ -5,33 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Dat Truong</title>
 
-  <!-- Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="../assets/css/global.css" />
   <link rel="stylesheet" href="../assets/css/header-footer.css" />
-  <link rel="stylesheet" href="../assets/css/responsive.css" />
   <link rel="stylesheet" href="../assets/css/project.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
 </head>
 <body>
   <div class="page-container" style="display: flex; flex-direction: column; min-height: 100vh;">
-<header>
-  <div class="site-brand">
-    <a href="../index.html" class="logo"><strong>Dat Truong</strong></a>
-    <button class="nav-toggle" aria-label="Toggle Navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
-  <nav class="site-nav">
-    <a href="../index.html">Home</a>
-    <a href="index.html">Projects</a>
-    <a href="../blog/index.html">Blog</a>
-    <a href="../resume.html">Resume</a>
-    <a href="../contact.html">Contact</a>
-  </nav>
-</header>
+    <header>
+      <div class="site-brand">
+        <a href="../index.html" class="logo"><strong>Dat Truong</strong></a>
+        <button class="nav-toggle" aria-label="Toggle Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Projects</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
 
     <main style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
       <h1 style="text-align:center;">🛠️ Projects</h1>
@@ -40,7 +38,7 @@
     </main>
 
     <footer class="site-footer">
-	    <p><center>© 2025 Dat Truong</center></p>
+      <p><center>© 2025 Dat Truong</center></p>
       <div class="footer-icons">
         <a href="../contact.html" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://github.com/icrusader" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -48,63 +46,46 @@
       </div>
     </footer>
   </div>
-<script>
-// Load all projects
-fetch('../data/projects.json')
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById('project-grid');
-    for (const id in data) {
-      const item = data[id];
-      const card = document.createElement('div');
-      card.className = 'post-card';
-      card.innerHTML = `
-        <h3>${item.title}</h3>
-        ${item.image ? `<img src="../${item.image}" alt="${item.title}" />` : ""}
-        <p>${item.description}</p>
-        <a href="${item.repo}" target="_blank" rel="noopener noreferrer">View Project →</a>
-      `;
-      container.appendChild(card);
-    }
-  })
-  .catch(error => {
-    console.error('Failed to load project data:', error);
-    document.getElementById('project-grid').innerHTML = "<p>Unable to load projects at this time.</p>";
-  });
-</script>
-<script>
-// Load latest 2 blog posts
-fetch('data/blogs.json')
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById('blog-preview');
-    let count = 0;
-    for (const id in data) {
-      if (count++ >= 2) break;
-      const item = data[id];
-      const card = document.createElement('div');
-      card.className = 'post-card';
-      card.innerHTML = `
-        <h3>${item.title}</h3>
-        ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
-        <p>${item.description}</p>
-        <a href="template.html?id=${id}">Read More →</a>
-      `;
-      container.appendChild(card);
-    }
-  })
-  .catch(error => {
-    console.error('Failed to load blog data:', error);
-    document.getElementById('blog-preview').innerHTML = "<p>Unable to load blog posts at this time.</p>";
-  });
-</script>
 
-<script>
-  document.querySelector('.nav-toggle').addEventListener('click', () => {
-    document.querySelector('.site-nav').classList.toggle('active');
-  });
-</script>
+  <script>
+    fetch('../data/projects.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('project-grid');
+        const keys = Object.keys(data);
 
+        if (keys.length === 0) {
+          container.innerHTML = `
+            <div class="post-card" style="text-align: center;">
+              <p>No projects to display at the moment.</p>
+            </div>
+          `;
+          return;
+        }
+
+        for (const id of keys) {
+          const project = data[id];
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = `
+            <h3>${project.title}</h3>
+            ${project.image ? `<img src="../${project.image}" alt="${project.title}" />` : ""}
+            <p>${project.description}</p>
+            <a href="${project.repo}" target="_blank" rel="noopener noreferrer">View Project →</a>
+          `;
+          container.appendChild(card);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load project data:', error);
+        document.getElementById('project-grid').innerHTML = "<p>Unable to load projects at this time.</p>";
+      });
+  </script>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.site-nav').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
-

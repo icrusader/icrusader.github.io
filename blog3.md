@@ -13,6 +13,11 @@ I was really happy to finish 63rd overall!
 I managed to complete all the challenges in the Forensics and Misc categories, which felt awesome. I also made good progress in the Web and Crypto sections.
 
 But the competition also showed me what I need to work on. The pwn and Reverse Engineering challenges were super tough, and it’s clear I need more experience there. Honestly, one of the best parts was all the new tools I got to use. I was constantly learning how to use new software on the fly to solve problems.
+## 🛠️ Technical Write-ups & Code
+
+For those interested in the technical details, I'm publishing my write-ups for the challenges on GitHub. You can see exactly how I solved problems in Forensics, Misc, and the other categories. It’s the best way to see the tools and techniques I used in action.
+
+Check out my GitHub here: [Github](https://github.com/icrusader/CTF)
 ## 💬 What's Next?
 
 The US Cyber Games was a great reality check. It reminded me that in cybersecurity, you never stop learning. I’m proud of how I did, but this is just the beginning.

@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dat Truong | Portfolio</title>
 
-  <!-- Favicon (optional) -->
   <link rel="icon" type="image/jpg" href="assets/images/avatar.jpg" />
 
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/header-footer.css" />
   <link rel="stylesheet" href="assets/css/index.css" />
@@ -36,8 +33,7 @@
   </nav>
 </header>
 
-    <!-- Cybersecurity Intro -->
-<div class="home-intro post-card" style="display: flex; align-items: left; justify-content: space-between; max-width: 900px; margin: 2rem auto; gap: 2rem; padding: 2rem;">
+    <div class="home-intro post-card" style="display: flex; align-items: left; justify-content: space-between; max-width: 900px; margin: 2rem auto; gap: 2rem; padding: 2rem;">
 <div style="text-align: center;">
     <img src="assets/images/avatar.jpg" alt="Dat Truong" class="avatar">
     <h3 style="margin-top: 0.75rem;">Dat Truong</h3>
@@ -59,7 +55,6 @@
   </div>
 </div>
 
-<!-- Projects Preview -->
 <div class="section-preview post-card" style="max-width: 900px; margin: 2rem auto;">
   <h2>🛠️ Projects</h2>
   <p>These are some of the projects I've worked on recently.</p>
@@ -67,16 +62,12 @@
   <a href="projects/index.html" class="view-all">→ View All Projects</a>
 </div>
 
-<!-- Blog Preview -->
 <div class="section-preview post-card" style="max-width: 900px; margin: 2rem auto;">
   <h2>📝 Blog</h2>
   <div class="post-grid" id="blog-preview"></div>
   <a href="blog/index.html" class="view-all">→ View All Posts</a>
 </div>
-    <!-- Footer -->
-
-  <!-- Sticky Footer -->
-  <footer class="site-footer">
+    <footer class="site-footer">
     <p><center>© 2025 Dat Truong</center></p>
     <div class="footer-icons">
       <a href="/contact.html" title="Email"><i class="fas fa-envelope"></i></a>
@@ -86,42 +77,43 @@
   </footer>
 </div>
 
-  <!-- JavaScript to load previews -->
   <script>
-    // Load latest 2 projects
-	    // Load latest 2 projects (linked to repo)
-  fetch('data/projects.json')
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('project-preview');
-      let count = 0;
-      for (const id in data) {
-        if (count++ >= 2) break;
-        const item = data[id];
-        const card = document.createElement('div');
-        card.className = 'post-card';
-        card.innerHTML = `
-          <h3>${item.title}</h3>
-          ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
-          <p>${item.description}</p>
-          <a href="${item.repo}" target="_blank" rel="noopener noreferrer">View Project →</a>
-        `;
-        container.appendChild(card);
-      }
-    })
-    .catch(error => {
-      console.error('Failed to load project data:', error);
-      document.getElementById('project-preview').innerHTML = "<p>Unable to load projects at this time.</p>";
-    });
-    // Load latest 2 blog posts
+    // Load latest 5 projects
+    fetch('data/projects.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('project-preview');
+        // Convert the data object to an array of its entries and reverse it
+        const reversedItems = Object.entries(data).reverse();
+        let count = 0;
+        for (const [id, item] of reversedItems) {
+          if (count++ >= 5) break;
+          const card = document.createElement('div');
+          card.className = 'post-card';
+          card.innerHTML = `
+            <h3>${item.title}</h3>
+            ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
+            <p>${item.description}</p>
+            <a href="${item.repo}" target="_blank" rel="noopener noreferrer">View Project →</a>
+          `;
+          container.appendChild(card);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load project data:', error);
+        document.getElementById('project-preview').innerHTML = "<p>Unable to load projects at this time.</p>";
+      });
+
+    // Load latest 5 blog posts
     fetch('data/blogs.json')
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById('blog-preview');
+        // Convert the data object to an array of its entries and reverse it
+        const reversedItems = Object.entries(data).reverse();
         let count = 0;
-        for (const id in data) {
-          if (count++ >= 2) break;
-          const item = data[id];
+        for (const [id, item] of reversedItems) {
+          if (count++ >= 5) break;
           const card = document.createElement('div');
           card.className = 'post-card';
           card.innerHTML = `
