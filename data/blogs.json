@@ -8,6 +8,11 @@
     "title": "🎓 My Last Dance at SDSU: CTF Edition",
     "description": "Reflecting on my senior year cybersecurity competitions and CTF milestones—including NCL, HackTheBox, and BugCrowd events.",
     "markdown": "data/blogs/blog2.md"
-  }
+  },
+    "blog3": {
+  "title": "My US-Cybergames CTF Journey",
+  "description": "Detailing my experiences, challenges, and key takeaways from competing in the US-Cybergames CTF.",
+  "markdown": "data/blogs/blog3.md"
+    }
 }
 
